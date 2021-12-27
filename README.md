@@ -13,9 +13,10 @@ During this part we had the opportunity to familiarize ourselves with *mcPat*, a
 
 This comparison's results were definitely in McPAT's favor, as all extracted data had minimal differences from the original data.
 
-![McPAT Validations results](./image/mcpat_vlaidation_results.png)
+![McPAT Validations results](image/mcpat_vlaidation_results.png)
 
 | __Processor__       | *Published total Power* | *Published total Area* | *McPAT total Power* | *McPAT total Area* | *% McPAT Error* |
+| ------------------- | ----------------------- | ---------------------- | ------------------- | ------------------ | --------------- |
 | ***Niagara***       | 63 W                    | 378 mm2                | 56.17 W             | 295 mm2            | -10.84 / -21.8  |
 | ***Niagara2***      | 84 W                    | 342 mm2                | 69.70 W             | 248 mm2            | -17.02 / -27.3  |
 | ***Xeon Tulsa***    | 150 W                   | 435 mm2                | 116.08 W            | 362 mm2            | -22.61 / -16.7  |
