@@ -13,7 +13,7 @@ During this part we had the opportunity to familiarize ourselves with *mcPat*, a
 
   This comparison's results were definitely in McPAT's favor, as all extracted data had minimal differences from the original data.
 
-![McPAT Validations results](./image/mcpat_vlaidation_results.png)
+![McPAT Validations results](./image/mcpat_validation_results.png)
 
 | __Processor__       | *Published total Power* | *Published total Area* | *McPAT total Power* | *McPAT total Area* | *% McPAT Error* |
 | ------------------- | ----------------------- | ---------------------- | ------------------- | ------------------ | --------------- |
