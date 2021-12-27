@@ -2,9 +2,9 @@
 
 This is a report regarding the findings of the third Part of the Computer Architecture Course Lab of Aristotle University in Thessaloniki.
 
-During this part we had the opportunity to familiarize ourselves with *mcPat*, a simulator which can provide analytic feedback concerning the __power consumption__ , __harware area space__ and __system timing__, of a given archtecture model. Let's take a dive to this useful tool:
+During this part we had the opportunity to familiarize ourselves with *mcPat*, a simulator which can provide analytic feedback concerning the __power consumption__ , __harware area space__ and __system timing__, of a given archtecture model. Let's take a dive into this useful tool:
 
-1. *McPAT's* original ***validation report*** was published in *December 12th, 2009* . The validations process aimed to testfy for the accuracy and fidelity of the     tool's results by comparing a series of processors' published data regarding power and area, provided the timing of each inivudual system, to the respective data   extracted from McPAT. The processor models used in this process were:
+1. *McPAT's* original ***validation report*** was published in *December 12th, 2009*. The validation process aimed to testify for the accuracy and fidelity of the tool's results by comparing a series of processors' published data regarding power and area, provided the timing of each individual system, to the respective data extracted from McPAT. The processor models used in this process were:
 
 * 90nm ***Niagara*** processor running at __1.2GHz__ with a __1.2V__ power supply
 * 65nm ***Niagara2*** processor running at __1.4GHz__ with a __1.1V__ power supply
@@ -17,13 +17,13 @@ During this part we had the opportunity to familiarize ourselves with *mcPat*, a
 
 | __Processor__       | *Published total Power* | *Published total Area* | *McPAT total Power* | *McPAT total Area* | *% McPAT Error* |
 | ------------------- | ----------------------- | ---------------------- | ------------------- | ------------------ | --------------- |
-| ***Niagara***       | 63 W                    | 378 mm2                | 56.17 W             | 295 mm2            | -10.84 / -21.8  |
-| ***Niagara2***      | 84 W                    | 342 mm2                | 69.70 W             | 248 mm2            | -17.02 / -27.3  |
-| ***Xeon Tulsa***    | 150 W                   | 435 mm2                | 116.08 W            | 362 mm2            | -22.61 / -16.7  |
-| ***Alpha 21364***   | 125 W                   | 396 mm2                | 97.90 W             | 324 mm2            | -21.68 / -18.2  |
+| ***Niagara***       | 63 W                    | 378 mm<sup>2</sup>                | 56.17 W             | 295 mm<sup>2</sup>            | -10.84 / -21.8  |
+| ***Niagara2***      | 84 W                    | 342 mm<sup>2</sup>                | 69.70 W             | 248 mm<sup>2</sup>   x         | -17.02 / -27.3  |
+| ***Xeon Tulsa***    | 150 W                   | 435 mm<sup>2</sup>                | 116.08 W            | 362 mm<sup>2</sup>            | -22.61 / -16.7  |
+| ***Alpha 21364***   | 125 W                   | 396 mm<sup>2</sup>                | 97.90 W             | 324 mm<sup>2</sup>            | -21.68 / -18.2  |
 
 The conclusion we can come to, based on this table, is that McPAT computed all the data with values ranging about 20% lower than the actual published ones.
-Thes fact that the error in each case is practically the same can help us identify this error without knowing the actual published data of the processor unit, for example, in an experimental architecture undergoing tests before materialization.
+The fact that the error in each case is practically the same can help us identify this error without knowing the actual published data of the processor unit, for example, in an experimental architecture undergoing tests before materialization.
 
 2. McPAT calculates the power dissipation of a processor model. Being aware of the power cost is one of the most critical advantages when designing a specific architecture model, because it can allow the architect to make desicions having an estimation of how the system distributes its supply power and how much unwanted power is being used. We can divide power dissipation in three main parts:
 
