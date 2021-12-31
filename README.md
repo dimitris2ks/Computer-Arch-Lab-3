@@ -51,6 +51,7 @@ Therefore, we aren't able to determine the energy a system has consumed only by 
 **Static power consumption** also plays a critical role in a system's battery longevity, since it is known energy is also wasted in the _idle state_.
 
 4. For this part, we assume that a _Xeon_ is **40 times faster** than an _ARM A9_ processor and we try to make an estimation about which model is the most energy efficient. We extract the necessary information by running McPAT tests under `print_level` equal to **5**:
+\
 _Xeon_
 ```
   Total Leakage = 36.8319 W
