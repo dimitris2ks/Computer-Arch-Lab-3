@@ -47,11 +47,10 @@ As per [Energy Star](https://www.energystar.gov/about/about_energy_efficiency), 
 \
 Therefore, we aren't able to determine the energy a system has consumed only by looking at the **power statistics**. We also need to know the **time** a program or an operation took to be executed. This is one of the reasons that McPAT alone doesn't provide us with the necessary information, if we're looking to make a decision about which processor is the most useful and energy efficient for our use case. We could, however, say that McPAT linked with experiment results by **gem5** is sufficient to draw such assumptions.
 \
-\
 **Static power consumption** also plays a critical role in a system's battery longevity, since it is known energy is also wasted in the _idle state_.
 
 4. For this part, we assume that a _Xeon_ is **40 times faster** than an _ARM A9_ processor and we try to make an estimation about which model is the most energy efficient. We extract the necessary information by running McPAT tests under `print_level` equal to **5**:
-\
+
 _**Xeon**_
 ```
   Total Leakage = 36.8319 W
