@@ -19,10 +19,10 @@ During this part we had the opportunity to familiarize ourselves with *mcPat*, a
 
 | __Processor__       | *Published total Power* | *Published total Area* | *McPAT total Power* | *McPAT total Area* | *% McPAT Error* |
 | ------------------- | ----------------------- | ---------------------- | ------------------- | ------------------ | --------------- |
-| ***Niagara***       | 63 W                    | 378 mm<sup>2</sup>                | 56.17 W             | 295 mm<sup>2</sup>            | -10.84 / -21.8  |
-| ***Niagara2***      | 84 W                    | 342 mm<sup>2</sup>                | 69.70 W             | 248 mm<sup>2</sup>   x         | -17.02 / -27.3  |
-| ***Xeon Tulsa***    | 150 W                   | 435 mm<sup>2</sup>                | 116.08 W            | 362 mm<sup>2</sup>            | -22.61 / -16.7  |
-| ***Alpha 21364***   | 125 W                   | 396 mm<sup>2</sup>                | 97.90 W             | 324 mm<sup>2</sup>            | -21.68 / -18.2  |
+| ***Niagara***       | 63 W                    | 378 mm<sup>2</sup>     | 56.17 W             | 295 mm<sup>2</sup> | -10.84 / -21.8  |
+| ***Niagara2***      | 84 W                    | 342 mm<sup>2</sup>     | 69.70 W             | 248 mm<sup>2</sup> | -17.02 / -27.3  |
+| ***Xeon Tulsa***    | 150 W                   | 435 mm<sup>2</sup>     | 116.08 W            | 362 mm<sup>2</sup> | -22.61 / -16.7  |
+| ***Alpha 21364***   | 125 W                   | 396 mm<sup>2</sup>     | 97.90 W             | 324 mm<sup>2</sup> | -21.68 / -18.2  |
 
 The conclusion we can come to, based on this table, is that McPAT computed all the data with values ranging about 20% lower than the actual published ones.
 The fact that the error in each case is practically the same can help us identify this error without knowing the actual published data of the processor unit, for example, in an experimental architecture undergoing tests before materialization.
@@ -37,6 +37,17 @@ The fact that the error in each case is practically the same can help us identif
 
 * ***Leakage/Static Power***: Transistors in circuits leak, dissipating static power. Leakage current depends on the width of the transistors and the local state of the devices. There are two leakage mechanisms. Subthreshold leakage occurs because a small current passes between the source and drain of off-state transistors. Gate leakage is the current leaking through the gate terminal, and varies greatly with the state of the device.
 
-According to our research, leakage power shows great variability, heavily depending on the nature of the program. Using [the documentation](https://www.hpl.hp.com/research/mcpat/McPATAlpha_TechRep.pdf), leakage power is dependent on the state in which the transistors are in, which is subsequently dependent on the way the hardware uses them, leading us back to the conclusion that the program being executed is responsible about the static power dissipation. Since power is time-independent, the time a program takes to be executed isn't likely to affect power dissipation.
+According to our research, leakage power shows great variability, heavily depending on the nature of the program. Using [the documentation](https://www.hpl.hp.com/research/mcpat/McPATAlpha_TechRep.pdf), leakage power is dependent on the state in which the transistors are in, which is subsequently dependent on the way the hardware uses them, leading us back to the conclusion that the program being executed is responsible for the static power dissipation. Since power is time-independent, the time a program takes to be executed isn't likely to affect how power is dissipated.
 
-3. 
+3. Now, suppose we have the exact same set of hardware twice, including the battery, but each time, **the processor model is different**: the first uses _25W_ and the second uses _35W_ of power. Before we make any conclusions about which processors actually results to better battery life, we first have to form a brief explanation on the concept of **energy efficiency**.
+\
+\
+As per [Energy Star](https://www.energystar.gov/about/about_energy_efficiency), _energy efficiency means using less energy to get the same job done_. This essentially means that an energy efficient solution could be more power intense in theory, but execute the required task much quicker, this way conserving energy.
+\
+\
+Therefore, we aren't able to determine the energy a system has consumed only by looking at the **power statistics**. We also need to know the **time** a program or an operation took to be executed. This is one of the reasons that McPAT alone doesn't provide us with the necessary information, if we're looking to make a decision about which processor is the most useful and energy efficient for our use case. We could, however, say that McPAT linked with experiment results by **gem5** is sufficient to draw such assumptions.
+\
+\
+**Static power consumption** also plays a critical role in a system's battery longevity, since it is known energy is also wasted in the _idle state_.
+
+4. 
