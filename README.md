@@ -47,21 +47,22 @@ As per [Energy Star](https://www.energystar.gov/about/about_energy_efficiency), 
 \
 Therefore, we aren't able to determine the energy a system has consumed only by looking at the **power statistics**. We also need to know the **time** a program or an operation took to be executed. This is one of the reasons that McPAT alone doesn't provide us with the necessary information, if we're looking to make a decision about which processor is the most useful and energy efficient for our use case. We could, however, say that McPAT linked with experiment results by **gem5** is sufficient to draw such assumptions.
 \
-\
 **Static power consumption** also plays a critical role in a system's battery longevity, since it is known energy is also wasted in the _idle state_.
 
 4. For this part, we assume that a _Xeon_ is **40 times faster** than an _ARM A9_ processor and we try to make an estimation about which model is the most energy efficient. We extract the necessary information by running McPAT tests under `print_level` equal to **5**:
-\
-_Xeon_
+
+_**Xeon**_
 ```
   Total Leakage = 36.8319 W
   Runtime Dynamic = 72.9199 W
 ```
-_ARM A9_
+_**ARM A9**_
 ```
   Total Leakage = 0.108687 W
   Runtime Dynamic = 2.96053 W
 ```
 
 Right away, we can see the vast difference in power consumption. After just a little investigation, it is clear to see that, if we had a way to completely shut the systen down after the completion of a task, the Xeon model would be more energy efficient. However, the massive discrepancy in energy consumption is still present, and even larger, when it comes to static power. This means that, even if the total needed energy for a task is comparable for both of the models, the energy that is wasted while the system waits for another operation to be assigned outweighs the former benefits.
+
+## Part 2: Combining McPAT and GEM5
 
