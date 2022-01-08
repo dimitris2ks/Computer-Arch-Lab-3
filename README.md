@@ -66,3 +66,20 @@ Right away, we can see the vast difference in power consumption. After just a li
 
 ## Part 2: Combining McPAT and GEM5
 
+The combination of these two powerful tools can provide us with useful information that can help us extract the ***EDAP*** value for differents architeural model. It is the best way for us to have a knowledge on the impact the architectural choices we make affect all aspects of the system's efficiency. 
+
+1. We can access data about the ***Area*** quite easily, as *mcPAT*'s output files contain straightforward information concerning the area that is needed for the model's realisation. On the other hand, the *stats.txt* file provides with the exact *runtime* of each round which is a very accurate metric for comparing ***Delay***. Last but not least, the ***Energy*** data can be extracted by running the ***print_energy.py*** script with *mcPAT*'s output file and *gem5*'s stats.txt file as input. Unfortunately this particular script did not run. So we searched inside the .py file to determine how the energy is computed. The function that does exactly that is called getEnergy:
+
+```python
+# @file: print_energy.py
+def getEnergy(mcpatoutputFile, statsFile):
+    leakage, dynamic = readMcPAT(mcpatoutputFile)
+    runtime = getTimefromStats(statsFile)
+    energy = (leakage + dynamic)*runtime
+    print "leakage: %f W, dynamic: %f W and runtime: %f sec" % (leakage, dynamic, runtime)
+    return energy*1000
+```
+
+As we can see, the function adds Dynamic Power and Leakage Power and multiplies the with the total runtime. This is the exact value of the energy consumption.
+
+In conclusion, we can use the *EDAP*(Energy * Delay * Area) product to evaluate the efficiency of each model we used, taking everything that matters into consideration.
