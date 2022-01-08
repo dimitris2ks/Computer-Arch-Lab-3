@@ -1,4 +1,4 @@
-using DataFrames, CSV;
+using DataFrames, CSV
 
 
 rounds = [1 3 7 10 11];
