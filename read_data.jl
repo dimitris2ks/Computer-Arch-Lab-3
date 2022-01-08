@@ -1,4 +1,8 @@
-using DataFrames, CSV;
+# @file: read_data.jl
+# @description: Read data -in quite a lazy way- from the McPAT
+# and GEM5 output files.
+
+using DataFrames, CSV
 
 
 rounds = [1 3 7 10 11];
