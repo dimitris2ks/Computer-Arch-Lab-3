@@ -80,6 +80,8 @@ def getEnergy(mcpatoutputFile, statsFile):
     return energy*1000
 ```
 
-As we can see, the function adds Dynamic Power and Leakage Power and multiplies the with the total runtime. This is the exact value of the energy consumption.
+As we can see, the function adds Dynamic Power and Leakage Power and multiplies the with the total runtime. This is the exact value of the energy that the system consumed while running each of the benchmarks.So, this is how we are going to compute it as well.
 
-In conclusion, we can use the *EDAP*(Energy * Delay * Area) product to evaluate the efficiency of each model we used, taking everything that matters into consideration.
+In conclusion, we can use the *EDAP*(Energy * Delay * Area) product to evaluate the efficiency of each model we used, taking everything that matters into consideration. Being energy efficient in addition to great performance is what we are striving for.
+
+2.
