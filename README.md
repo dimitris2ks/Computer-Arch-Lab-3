@@ -84,4 +84,4 @@ As we can see, the function adds Dynamic Power and Leakage Power and multiplies 
 
 In conclusion, we can use the *EDAP*(Energy * Delay * Area) product to evaluate the efficiency of each model we used, taking everything that matters into consideration. Being energy efficient in addition to great performance is what we are striving for.
 
-2.
+2.After collecting all the necessary data we are able to compare 5 rounds of 5 *SPEC CPU2006* benchmarks, with a different processor model in each round. We can now visualize how much the different changes we make to the system affect the overall efficiency of it. 
