@@ -12,7 +12,8 @@ specmcf = DataFrame(CSV.File("data/specmcf_data.txt"));
 
 benchmarks = [specbzip, spechmmer, specsjeng, speclibm, specmcf];
 names = ["specbzip", "spechmmer", "specsjeng", "speclibm", "specmcf"];
-n = length(specbzip[!, 1]);
+rounds = [1, 3, 7, 10, 11];
+n = length(rounds);
 
 edap = DataFrame(
   specbzip = Vector{Float64}(undef, n),
@@ -24,7 +25,7 @@ edap = DataFrame(
 
 for i = 1:5
   for j = 1:n
-    edap[i, j] = benchmarks[i][j, 1] *
+    edap[j, i] = benchmarks[i][j, 1] *
       (benchmarks[i][j, 3] + benchmarks[i][j, 4]) *
       benchmarks[i][j, 2];
   end
@@ -34,14 +35,15 @@ l = @layout [a{0.4h}; b c d];
 
 for i = 1:5
   edap_p = plot(
-    edap[!, 1],
+    rounds, edap[!, 1], 
     linecolor = :orangered,
     markercolor = :orangered,
     marker = :circle,
-    label = "EDAP",
+    title = "EDAP",
+    legend = false,
   );
   dynamic_p = plot(
-    benchmarks[i][!, 3],
+    rounds, benchmarks[i][!, 3],
     linecolor = :red1,
     markercolor = :red1,
     marker = :circle,
@@ -49,7 +51,7 @@ for i = 1:5
     legend = false,
   );
   leakage_p = plot(
-    benchmarks[i][!, 4],
+    rounds, benchmarks[i][!, 4],
     linecolor = :red2,
     markercolor = :red2,
     marker = :circle,
@@ -57,7 +59,7 @@ for i = 1:5
     legend = false,
   );
   peak_p = plot(
-    benchmarks[i][!, 5],
+    rounds, benchmarks[i][!, 5],
     linecolor = :red3,
     markercolor = :red3,
     marker = :circle,
@@ -66,6 +68,6 @@ for i = 1:5
   );
 
   p = plot(edap_p, dynamic_p, leakage_p, peak_p, layout = l);
-  savefig(p, "output/" * names[i] * "_info.png")
+  savefig(p, "output/info/" * names[i] * "_info.png");
 end
 
