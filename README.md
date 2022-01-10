@@ -82,6 +82,28 @@ def getEnergy(mcpatoutputFile, statsFile):
 
 As we can see, the function adds Dynamic Power and Leakage Power and multiplies the with the total runtime. This is the exact value of the energy that the system consumed while running each of the benchmarks.So, this is how we are going to compute it as well.
 
+energy = (leakage + dynamic)*runtime
+
 In conclusion, we can use the *EDAP*(Energy * Delay * Area) product to evaluate the efficiency of each model we used, taking everything that matters into consideration. Being energy efficient in addition to great performance is what we are striving for.
 
-2.After collecting all the necessary data we are able to compare 5 rounds of 5 *SPEC CPU2006* benchmarks, with a different processor model in each round. We can now visualize how much the different changes we make to the system affect the overall efficiency of it. 
+2. After collecting all the necessary data we are able to compare 5 rounds of 5 *SPEC CPU2006* benchmarks, with a different processor model in each round. We can now visualize how much the different changes we make to the system affect the overall efficiency of it. We used 5 rounds of *gem5* simulations in which we saw the most significant changes in the cost function we composed. The changes that were done in each round were:
+
+|            | icache.size | dcache.size | l2cache.size | icache.assoc | dcache.assoc | l2cache.assoc | block_size |
+| ---------- | ----------- | ----------- | ------------ | ------------ | ------------ | ------------- | ---------- |
+|1: round 1  | 32KB        | 64KB        | 2MB          | 2            | 2            | 8             | 64bytes    |
+|2: round 3  | 256KB       | 64KB        | 1MB          | 2            | 1            | 2             | 32bytes    |
+|3: round 7  | 512KB       | 128KB       | 1MB          | 2            | 2            | 2             | 32bytes    |
+|4: round 10 | 512KB       | 256KB       | 2MB          | 4            | 2            | 4             | 128bytes   |
+|5: round 11 | 32KB        | 64KB        | 2MB          | 2            | 2            | 8             | 64bytes    | 
+
+In the graphs we generated using the combined data we can see the fluctuation of the *EDAP* throught the different rounds. In round 10 (4), there is the most sensible increase of the *EDAP*, as well as power consumption alone. This considerable difference can be justified by the significantly bigger cache sizes and block size. WE can clearly see in the graphs below that bigger cache sizes result in increase in both area and power, as these two fluctuate accordingly. 
+
+![edap.graphs](./output/info/specbzip_info.png)
+
+![area_power](.output/are-peak_dynamic/specbzip_area_to_peak.png)
+
+**Please note, all the graphs we produced can be found in [the output folder](./output)**
+
+3. We made a cost function in order to compare the results provided by *gem5* from the different processor models we used. This function was made arbitrarily and contained two factors that play a big role in performance and cost.
+
+Cost = ( 5 * l1cache.size + l2cache.size ) * sqrt( assoc ) 
