@@ -4,7 +4,7 @@ This is a report regarding the findings of the third Part of the Computer Archit
 
 ## Part 1: Getting familiar with McPAT
 
-During this part we had the opportunity to familiarize ourselves with *mcPat*, a simulator which can provide analytic feedback concerning the __power consumption__ , __harware area space__ and __system timing__, of a given archtecture model. Let's take a dive into this useful tool:
+During this part we had the opportunity to familiarize ourselves with *McPAT*, a simulator which can provide analytic feedback concerning the __power consumption__ , __harware area space__ and __system timing__, of a given archtecture model. Let's take a dive into this useful tool:
 
 1. *McPAT's* original ***validation report*** was published in *December 12th, 2009*. The validation process aimed to testify for the accuracy and fidelity of the tool's results by comparing a series of processors' published data regarding power and area, provided the timing of each individual system, to the respective data extracted from McPAT. The processor models used in this process were:
 
@@ -27,7 +27,7 @@ During this part we had the opportunity to familiarize ourselves with *mcPat*, a
 The conclusion we can come to, based on this table, is that McPAT computed all the data with values ranging about 20% lower than the actual published ones.
 The fact that the error in each case is practically the same can help us identify this error without knowing the actual published data of the processor unit, for example, in an experimental architecture undergoing tests before materialization.
 
-2. McPAT calculates the power dissipation of a processor model. Being aware of the power cost is one of the most critical advantages when designing a specific architecture model, because it can allow the architect to make desicions having an estimation of how the system distributes its supply power and how much unwanted power is being used. We can divide power dissipation in three main parts:
+2. McPAT calculates the power dissipation of a processor model. Being aware of the power cost is one of the most critical advantages when designing a specific architecture model, because it can allow the architect to make desicions having an estimation of how the system distributes its supplied power and how much unwanted power is being used. We can divide power dissipation in three main parts:
 
 ![McPAT power hierarchy](./image/mcpat_power.png)
 
@@ -66,9 +66,9 @@ Right away, we can see the vast difference in power consumption. After just a li
 
 ## Part 2: Combining McPAT and GEM5
 
-The combination of these two powerful tools can provide us with useful information that can help us extract the ***EDAP*** value for differents architeural model. It is the best way for us to have a knowledge on the impact the architectural choices we make affect all aspects of the system's efficiency. 
+The combination of these two powerful tools can provide us with useful information that can help us extract the ***EDAP*** value for different architectural models. It is the best way for us to have a knowledge on the impact the architectural choices we make affect all aspects of the system's efficiency. 
 
-1. We can access data about the ***Area*** quite easily, as *mcPAT*'s output files contain straightforward information concerning the area that is needed for the model's realisation. On the other hand, the *stats.txt* file provides with the exact *runtime* of each round which is a very accurate metric for comparing ***Delay***. Last but not least, the ***Energy*** data can be extracted by running the ***print_energy.py*** script with *mcPAT*'s output file and *gem5*'s stats.txt file as input. Unfortunately this particular script did not run. So we searched inside the .py file to determine how the energy is computed. The function that does exactly that is called getEnergy:
+1. We can access data about the ***Area*** quite easily, as *McPAT*'s output files contain straightforward information concerning the area that is needed for the model's realisation. On the other hand, the *stats.txt* file provides us with the exact *runtime* of each round which is a very accurate metric for comparing ***Delay***. Last but not least, the ***Energy*** data can be extracted by running the ***print_energy.py*** script with *mcPAT*'s output file and *gem5*'s stats.txt file as input. Unfortunately this particular script did not run. So we searched inside the .py file to determine how the energy is computed. The function that does exactly that is called getEnergy:
 
 ```python
 # @file: print_energy.py
@@ -80,7 +80,7 @@ def getEnergy(mcpatoutputFile, statsFile):
     return energy*1000
 ```
 
-As we can see, the function adds Dynamic Power and Leakage Power and multiplies the with the total runtime. This is the exact value of the energy that the system consumed while running each of the benchmarks.So, this is how we are going to compute it as well.
+As we can see, the function adds Dynamic Power and Leakage Power and multiplies the with the total runtime. This is the exact value of the energy that the system consumed while running each of the benchmarks. So, this is how we are going to compute it as well.
 
 energy = (leakage + dynamic)*runtime
 
@@ -110,7 +110,7 @@ Cost = ( 5 * l1cache.size + l2cache.size ) * sqrt( assoc )
 
 ![cost_function](./output/cost_function/cost_function.jpeg)
 
-If we take a look at the *EDAP* and *cost function* graphs we can observe a very similar behaviour between the different rounds. The conclusion we come to is that performance always comes with a "cost". Always, the faster solusions result in either bigger sizes, increased power consumption or both and ultimately come with a bigger price tag of course. Our goal in the architecture field is to find a golden mean, in which we don't have to sacrifice everything for the sake of performance. That of course relies heavily on the purpose of every machine, so we have to take everything into consideration to make the best decisions possible.
+If we take a look at the *EDAP* and *cost function* graphs we can observe a very similar behaviour between the different rounds. The conclusion we come to is that performance always comes with a "cost". Always, the faster solutions result in either bigger sizes, increased power consumption or both and ultimately come with a bigger price tag of course. Our goal in the architecture field is to find a golden mean, in which we don't have to sacrifice everything for the sake of performance. That of course relies heavily on the purpose of every machine, so we have to take everything into consideration to make the best decisions possible.
 
-Antonios Atnoniou - 9482
-Dimitrios Xylogiannis - 9672
+## Antonios Antoniou - 9482
+## Dimitrios Xylogiannis - 9672
