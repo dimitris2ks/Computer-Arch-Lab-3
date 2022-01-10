@@ -47,7 +47,7 @@ As per [Energy Star](https://www.energystar.gov/about/about_energy_efficiency), 
 \
 Therefore, we aren't able to determine the energy a system has consumed only by looking at the **power statistics**. We also need to know the **time** a program or an operation took to be executed. This is one of the reasons that McPAT alone doesn't provide us with the necessary information, if we're looking to make a decision about which processor is the most useful and energy efficient for our use case. We could, however, say that McPAT linked with experiment results by **gem5** is sufficient to draw such assumptions.
 \
-**Static power consumption** also plays a critical role in a system's battery longevity, since it is known energy is also wasted in the _idle state_.
+**Static power consumption** also plays a critical role in a system's battery longevity, since it is known energy is also wasted in the _idle state_. This problem can be solved with ***power gating***, a method in which unused parts of the circuit receive no power at all. This way we don't have to trust that the transistors' "off state" is actually off. 
 
 4. For this part, we assume that a _Xeon_ is **40 times faster** than an _ARM A9_ processor and we try to make an estimation about which model is the most energy efficient. We extract the necessary information by running McPAT tests under `print_level` equal to **5**:
 
@@ -62,7 +62,7 @@ _**ARM A9**_
   Runtime Dynamic = 2.96053 W
 ```
 
-Right away, we can see the vast difference in power consumption. After just a little investigation, it is clear to see that, if we had a way to completely shut the systen down after the completion of a task, the Xeon model would be more energy efficient. However, the massive discrepancy in energy consumption is still present, and even larger, when it comes to static power. This means that, even if the total needed energy for a task is comparable for both of the models, the energy that is wasted while the system waits for another operation to be assigned outweighs the former benefits.
+Right away, we can see the vast difference in power consumption. After just a little investigation, it is clear to see that, if we had a way to completely shut the system down after the completion of a task, the Xeon model would be more energy efficient. However, the massive discrepancy in energy consumption is still present, and even larger, when it comes to static power. This means that, even if the total needed energy for a task is comparable for both of the models, the energy that is wasted while the system waits for another operation to be assigned outweighs the former benefits.
 
 ## Part 2: Combining McPAT and GEM5
 
@@ -96,7 +96,7 @@ In conclusion, we can use the *EDAP*(Energy * Delay * Area) product to evaluate 
 |4: round 10 | 512KB       | 256KB       | 2MB          | 4            | 2            | 4             | 128bytes   |
 |5: round 11 | 32KB        | 64KB        | 2MB          | 2            | 2            | 8             | 64bytes    | 
 
-In the graphs we generated using the combined data we can see the fluctuation of the *EDAP* throught the different rounds. In round 10 (4), there is the most sensible increase of the *EDAP*, as well as power consumption alone. This considerable difference can be justified by the significantly bigger cache sizes and block size. WE can clearly see in the graphs below that bigger cache sizes result in increase in both area and power, as these two fluctuate accordingly. 
+In the graphs we generated using the combined data we can see the fluctuation of the *EDAP* throught the different rounds. In round 10 (4), there is the most sensible increase of the *EDAP*, as well as **power consumption** alone. This considerable difference can be justified by the significantly bigger cache sizes and block size. WE can clearly see in the graphs below that bigger cache sizes result in increase in both area and power, as these two fluctuate accordingly. However, we can't say the same about the associativity because by observing the graphs we can agree that both rounds 1 and 11, in which we used caches with higher associativity have the lowest *EDAP* values. It doesn't seem to affect the **Area** aspect either, which is affected almost exclusively by cache size.
 
 ![edap.graphs](./output/info/specbzip_info.png)
 
@@ -110,4 +110,7 @@ Cost = ( 5 * l1cache.size + l2cache.size ) * sqrt( assoc )
 
 ![cost_function](./output/cost_function/cost_function.jpeg)
 
-If we take a look at the *EDAP* and *cost function* graphs we can observe a very similar behaviour between the different rounds. The conclusion we come to is that performance always comes with a "cost". Always, the faster solusions result in either bigger sizes, increased power consumption or both and ultimately come with a bigger price tag of course. Our goal in the architecture field is to find a golden mean, in which we don't have to sacrifice everything for the sake of performance. That of course relies heavily on the purpose of every machine, so we have to take everything into consideration to make the best decisions possible.      
+If we take a look at the *EDAP* and *cost function* graphs we can observe a very similar behaviour between the different rounds. The conclusion we come to is that performance always comes with a "cost". Always, the faster solusions result in either bigger sizes, increased power consumption or both and ultimately come with a bigger price tag of course. Our goal in the architecture field is to find a golden mean, in which we don't have to sacrifice everything for the sake of performance. That of course relies heavily on the purpose of every machine, so we have to take everything into consideration to make the best decisions possible.
+
+Antonios Atnoniou - 9482
+Dimitrios Xylogiannis - 9672
