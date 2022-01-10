@@ -100,10 +100,14 @@ In the graphs we generated using the combined data we can see the fluctuation of
 
 ![edap.graphs](./output/info/specbzip_info.png)
 
-![area_power](.output/are-peak_dynamic/specbzip_area_to_peak.png)
+![area_power](./output/area-peak_dynamic/specbzip_area_to_peak.png)
 
 **Please note, all the graphs we produced can be found in [the output folder](./output)**
 
 3. We made a cost function in order to compare the results provided by *gem5* from the different processor models we used. This function was made arbitrarily and contained two factors that play a big role in performance and cost.
 
-Cost = ( 5 * l1cache.size + l2cache.size ) * sqrt( assoc ) 
+Cost = ( 5 * l1cache.size + l2cache.size ) * sqrt( assoc )
+
+![cost_function](./output/cost_function/cost_function.jpeg)
+
+If we take a look at the *EDAP* and *cost function* graphs we can observe a very similar behaviour between the different rounds. The conclusion we come to is that performance always comes with a "cost". Always, the faster solusions result in either bigger sizes, increased power consumption or both and ultimately come with a bigger price tag of course. Our goal in the architecture field is to find a golden mean, in which we don't have to sacrifice everything for the sake of performance. That of course relies heavily on the purpose of every machine, so we have to take everything into consideration to make the best decisions possible.      
