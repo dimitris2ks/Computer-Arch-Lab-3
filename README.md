@@ -112,5 +112,10 @@ Cost = ( 5 * l1cache.size + l2cache.size ) * sqrt( assoc )
 
 If we take a look at the *EDAP* and *cost function* graphs we can observe a very similar behaviour between the different rounds. The conclusion we come to is that performance always comes with a "cost". Always, the faster solutions result in either bigger sizes, increased power consumption or both and ultimately come with a bigger price tag of course. Our goal in the architecture field is to find a golden mean, in which we don't have to sacrifice everything for the sake of performance. That of course relies heavily on the purpose of every machine, so we have to take everything into consideration to make the best decisions possible.
 
+## Thoughts on this lab's tasks
+For the final assignment of the course's labs we had the chances to be creative with reading, extracting and calculating data from the resulting simulations we had to complete (this can be seen in the Julia scripts we heavily used). This had to be done due to the abnormal behavior some of the ready-to-use scripts we tried to use showed.
+\
+Regarding the course itself, we were, once again, lucky enough to have most of our questions answered through either solving the tasks of the assignment or through cooperatively looking up information about matters we were unsure about. This has been the most significant thing we got out of all 3 labs we had to present: Putting things into practice and trying to explain the results of our very tests allowed us to dive deeper into what the course deals with in general.
+
 ## Antonios Antoniou - 9482
 ## Dimitrios Xylogiannis - 9672
